@@ -1,0 +1,12 @@
+<hr *ngIf="(pedidos | async)?.length > 0" />
+
+<div class="card my-2" *ngFor="let pedido of pedidos | async">
+  <div class="card-body">
+    <h4 class="card-title">{{pedido.clienteId}}</h4>
+    <p class="card-text"><strong>clienteId: </strong>{{pedido.clienteId}}</p>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-secondary" (click)="edit(pedido, pedido.key)">Editar</button>
+    <button type="button" class="btn btn-danger mx-2" (click)="delete(pedido.key)">Excluir</button>
+  </div>
+</div>

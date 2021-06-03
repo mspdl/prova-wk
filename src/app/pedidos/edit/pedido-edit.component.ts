@@ -25,7 +25,7 @@ export class PedidoEditComponent implements OnInit {
 
   // TODO tipar depois
   clientes: Cliente[]
-  clientesSelecionados: Cliente
+  clientesSelecionado: Cliente
 
   produtos = []
   produtosSelecionados = []
@@ -58,7 +58,7 @@ export class PedidoEditComponent implements OnInit {
     this.pedidoDataService.currentPedido.subscribe(data => {
       if (data.pedido && data.key) {
         this.pedido = new Pedido()
-        this.pedido.clienteId = data.pedido.clienteId
+        this.pedido.cliente = data.pedido.cliente
         this.pedido.itensVenda = data.pedido.itensVenda
         this.pedido.momentoVenda = data.pedido.momentoVenda
         this.pedido.totalVenda = data.pedido.totalVenda
@@ -69,6 +69,11 @@ export class PedidoEditComponent implements OnInit {
   }
 
   onSubmit() {
+    debugger
+    this.pedido.cliente = this.clientesSelecionado
+    this.pedido.itensVenda = this.produtosSelecionados
+    this.pedido.momentoVenda = Date.now()
+    this.pedido.totalVenda = this.valorPedido
     if (this.pedidoKey) {
       this.pedidoService.update(this.pedido, this.pedidoKey)
     } else {
@@ -86,8 +91,8 @@ export class PedidoEditComponent implements OnInit {
 
   onChangeCliente(clienteId): void {
     console.log(clienteId);
-    this.clientesSelecionados = this.clientes.find(cliente => cliente.id === clienteId)
-    console.log(this.clientesSelecionados)
+    this.clientesSelecionado = this.clientes.find(cliente => cliente.id === clienteId)
+    console.log(this.clientesSelecionado)
   }
 
   onItemSelect(produto: any ) {

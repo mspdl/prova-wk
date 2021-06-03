@@ -1,9 +1,9 @@
-<hr *ngIf="(pedidos | async)?.length > 0" />
+<hr *ngIf="pedidos?.length > 0" />
 
-<div class="card my-2" *ngFor="let pedido of pedidos | async">
+<div class="card my-2" *ngFor="let pedido of pedidos">
   <div class="card-body">
-    <h4 class="card-title">{{pedido.clienteId}}</h4>
-    <p class="card-text"><strong>clienteId: </strong>{{pedido.clienteId}}</p>
+    <h4 class="card-title">Pedido {{pedido.key}} - R$ {{pedido.totalVenda}}</h4>
+    <p class="card-text"><strong>Cliente: </strong>{{pedido.cliente?.nome}}</p>
   </div>
   <div class="card-footer">
     <button type="button" class="btn btn-secondary" (click)="edit(pedido, pedido.key)">Editar</button>

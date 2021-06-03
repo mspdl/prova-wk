@@ -15,6 +15,7 @@ export class PedidoService {
       .push(pedido)
       .then((result: any) => {
         console.log("Pedido registrado com chave " + result.key)
+        pedido.key = result.key
       })
   }
 

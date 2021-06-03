@@ -1,20 +1,6 @@
-<!--
-  <form (ngSubmit)="onSubmit()" ngNativeValidate>
-
-  <div class="form-group mt-2">
-    <label>clienteId</label>
-    <input type="text" class="form-control" [(ngModel)]="pedido.clienteId" name="clienteId" required />
-  </div>
-
-  <button type="submit" class="btn btn-primary mt-2">Salvar</button>
-  <button type="button" (click)="reset()" class="btn btn-secondary mt-2 mx-2">Cancel</button>
-</form>
-
--->
-<h4>native html select</h4>
-<form>
-  <label>Select your car (required)</label>
+<form (ngSubmit)="onSubmit()" ngNativeValidate>
   <select
+    *ngIf="clientes?.length > 0"
     #cliente
     matNativeControl
     required
@@ -26,24 +12,28 @@
     </option>
   </select>
 
+  <p *ngIf="clientes?.length == 0">Você precisa cadastrar um <a routerLink="/clientes">Cliente</a> primeiro</p>
+
   <ng-multiselect-dropdown
-  [placeholder]="'Selecione os produtos'"
-  [settings]="dropdownSettings"
-  [data]="produtos"
-  [(ngModel)]="produtosSelecionados"
-  (onSelect)="onItemSelect($event)"
-  (onDeSelect)="onDeSelect($event)"
+    [disabled]="!clientesSelecionado"
+    [placeholder]="'Selecione os produtos'"
+    [settings]="dropdownSettings"
+    [data]="produtos"
+    [(ngModel)]="produtosSelecionados"
+    (onSelect)="onItemSelect($event)"
+    (onDeSelect)="onDeSelect($event)"
+    name="produtos"
+  ></ng-multiselect-dropdown>
 
->
-</ng-multiselect-dropdown>
-
-<div *ngIf="produtosSelecionados.length > 0">
-  <h5>Produtos Selecionados</h5>
-  <div *ngFor="let produto of produtosSelecionados">
-    {{produto.nome}} R$ {{produto.valorUnitario}}
+  <div *ngIf="produtosSelecionados?.length > 0">
+    <h5>Produtos Selecionados</h5>
+    <div *ngFor="let produto of produtosSelecionados">
+      {{produto.nome}} R$ {{produto.valorUnitario}}
+    </div>
+    <p>Valor do pedido: {{valorPedido}}</p>
   </div>
-  <p>Valor do pedido: {{valorPedido}}</p>
-</div>
 
+  <button [disabled]="!clientesSelecionado || produtosSelecionados.length == 0" type="submit" class="btn btn-primary mt-2">Salvar</button>
+  <button type="button" (click)="reset()" class="btn btn-secondary mt-2 mx-2">Cancel</button>
 
 </form>

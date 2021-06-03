@@ -11,8 +11,7 @@ import { PedidoService } from '../shared/pedido.service';
 })
 export class PedidoListComponent implements OnInit {
 
-  // TODO tipar depois
-  pedidos: Observable<any>
+  pedidos: Pedido[]
 
   constructor(
     private pedidoService: PedidoService,
@@ -20,11 +19,12 @@ export class PedidoListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pedidos = this.pedidoService.getAll()
+    this.pedidoService.getAll().subscribe(pedidos => this.pedidos = pedidos)
+    console.log(this.pedidos)
   }
 
   delete(key: string){
-    this.pedidoService.delete(key)
+    console.log(this.pedidos)
   }
 
   edit(pedido: Pedido, key: string){

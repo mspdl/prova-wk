@@ -1,12 +1,11 @@
+import { Component, OnInit } from '@angular/core';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Cliente } from 'src/app/clientes/shared/cliente';
+import { ClienteService } from 'src/app/clientes/shared/cliente.service';
+import { ProdutoService } from 'src/app/produtos/shared/produto.service';
 import { Pedido } from '../shared/pedido';
 import { PedidoDataService } from '../shared/pedido-data.service';
 import { PedidoService } from '../shared/pedido.service';
-import { Component, OnInit } from '@angular/core';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { ClienteService } from 'src/app/clientes/shared/cliente.service';
-import { Cliente } from 'src/app/clientes/shared/cliente';
-import { Produto } from 'src/app/produtos/shared/produto';
-import { ProdutoService } from 'src/app/produtos/shared/produto.service';
 
 interface Animal {
   name: string;
@@ -59,9 +58,9 @@ export class PedidoEditComponent implements OnInit {
       if (data.pedido && data.key) {
         this.pedido = new Pedido()
         this.pedido.cliente = data.pedido.cliente
-        this.pedido.itensVenda = data.pedido.itensVenda
-        this.pedido.momentoVenda = data.pedido.momentoVenda
-        this.pedido.totalVenda = data.pedido.totalVenda
+        this.pedido.produtosPedido = data.pedido.itensVenda
+        this.pedido.dataHoraPedido = data.pedido.momentoVenda
+        this.pedido.valorTotalPedido = data.pedido.totalVenda
 
         this.pedidoKey = data.key
       }
@@ -71,9 +70,9 @@ export class PedidoEditComponent implements OnInit {
   onSubmit() {
     debugger
     this.pedido.cliente = this.clientesSelecionado
-    this.pedido.itensVenda = this.produtosSelecionados
-    this.pedido.momentoVenda = Date.now()
-    this.pedido.totalVenda = this.valorPedido
+    this.pedido.produtosPedido = this.produtosSelecionados
+    this.pedido.dataHoraPedido = Date.now()
+    this.pedido.valorTotalPedido = this.valorPedido
     if (this.pedidoKey) {
       this.pedidoService.update(this.pedido, this.pedidoKey)
     } else {

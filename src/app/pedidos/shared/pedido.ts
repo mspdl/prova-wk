@@ -3,8 +3,8 @@ import { Produto } from "src/app/produtos/shared/produto"
 
 export class Pedido {
   key: string
-  momentoVenda: number
+  dataHoraPedido: number
   cliente: Cliente
-  itensVenda: Produto[]
-  totalVenda: number
+  produtosPedido: Produto[]
+  valorTotalPedido: number
 }

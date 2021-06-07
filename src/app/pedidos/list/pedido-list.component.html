@@ -2,11 +2,16 @@
 
 <div class="card my-2" *ngFor="let pedido of pedidos">
   <div class="card-body">
-    <h4 class="card-title">Pedido {{pedido.key}} - R$ {{pedido.totalVenda}}</h4>
+    <h4 class="card-title">Pedido {{pedido.key}}</h4>
+    <p>Pedido criado <strong>{{pedido.dataHoraPedido | date: 'dd/MM/yyyy HH:mm:ss'}}</strong></p>
     <p class="card-text"><strong>Cliente: </strong>{{pedido.cliente?.nome}}</p>
+    <h5>Produtos</h5>
+    <div *ngFor="let produto of pedido.produtosPedido">
+      <p>{{produto.nome}} - R$ {{produto.valorUnitario}},00</p>
+    </div>
+    <h5>Valor total do pedido: R$ {{pedido.valorTotalPedido}},00</h5>
   </div>
   <div class="card-footer">
-    <button type="button" class="btn btn-secondary" (click)="edit(pedido, pedido.key)">Editar</button>
-    <button type="button" class="btn btn-danger mx-2" (click)="delete(pedido.key)">Excluir</button>
+    <button type="button" class="btn btn-danger" (click)="delete(pedido.key)">Excluir</button>
   </div>
 </div>

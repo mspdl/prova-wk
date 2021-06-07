@@ -22,7 +22,6 @@
     [(ngModel)]="produtosSelecionados"
     (onSelect)="onItemSelect($event)"
     (onDeSelect)="onDeSelect($event)"
-    name="produtos"
   ></ng-multiselect-dropdown>
 
   <div *ngIf="produtosSelecionados?.length > 0">

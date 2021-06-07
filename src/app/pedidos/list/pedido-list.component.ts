@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Pedido } from '../shared/pedido';
 import { PedidoDataService } from '../shared/pedido-data.service';
 import { PedidoService } from '../shared/pedido.service';
@@ -25,10 +24,6 @@ export class PedidoListComponent implements OnInit {
 
   delete(key: string){
     console.log(this.pedidos)
-  }
-
-  edit(pedido: Pedido, key: string){
-    this.pedidoDataService.changePedido(pedido, key)
   }
 
 }

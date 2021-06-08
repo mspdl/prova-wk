@@ -1,0 +1,25 @@
+@import "../../app.component.scss";
+
+select {
+  margin-bottom: 10px;
+}
+
+.produtos-selecionados {
+  margin-top: 10px;
+
+  h5 {
+    margin-bottom: 0px;
+    color: $subtitle;
+    font-size: 18px;
+  }
+
+  p,
+  strong {
+    color: $text;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}

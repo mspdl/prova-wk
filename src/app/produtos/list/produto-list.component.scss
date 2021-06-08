@@ -1,0 +1,18 @@
+@import "../../app.component.scss";
+
+.card-title {
+  color: $title;
+}
+
+.card-text,
+.card-text strong {
+  color: $text;
+}
+
+h5 {
+  color: $subtitle;
+}
+
+.card {
+  margin-bottom: 15px !important;
+}

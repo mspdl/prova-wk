@@ -1,0 +1,15 @@
+@import "../app.component.scss";
+
+.container {
+  width: 100%;
+
+  h1 {
+    font-weight: 600;
+    text-align: center;
+    color: $title;
+  }
+
+  p {
+    color: $subtitle;
+  }
+}

@@ -1,0 +1,31 @@
+@import "../../app.component.scss";
+
+
+
+.card {
+  margin-bottom: 15px !important;
+  color: $text;
+
+  .card-title {
+    color: $title;
+  }
+
+  .created-at {
+    font-style: italic;
+  }
+
+  h5 {
+    color: $subtitle;
+  }
+
+  .strong-title {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+
+  .produtos-selecionados p{
+    margin: 0px;
+  }
+
+}
+

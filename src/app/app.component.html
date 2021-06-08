@@ -1,11 +1,32 @@
-<nav>
-  <ul>
-    <li> <a routerLink="/">Index</a></li>
-    <li><a routerLink="/clientes">Clientes</a></li>
-    <li><a routerLink="/produtos">Produtos</a></li>
-    <li><a routerLink="/pedidos">Pedidos</a></li>
-  </ul>
-</nav>
+<div class="app-container">
+  <div class="header">
 
-<router-outlet>
-</router-outlet>
+    <a routerLink="/">
+      <div class="logo">
+      </div>
+    </a>
+
+    <div class="breadcrumb">
+      <nav>
+        <ul>
+          <li><a routerLink="/clientes">Clientes</a></li>
+          <li><a routerLink="/produtos">Produtos</a></li>
+          <li><a routerLink="/pedidos">Pedidos</a></li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+
+  <div class="content">
+    <router-outlet>
+    </router-outlet>
+  </div>
+
+  <footer>
+    <p>
+      Developed with &hearts;	by <a href="https://github.com/mspdl/" target="_blank">Morgan</a>
+    </p>
+  </footer>
+
+</div>

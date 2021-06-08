@@ -29,6 +29,7 @@ export class ClienteListComponent implements OnInit {
 
   edit(cliente: Cliente, key: string){
     this.clienteDataService.changeCliente(cliente, key)
+    window.scrollTo(0, 100)
   }
 
 }

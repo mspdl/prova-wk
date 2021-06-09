@@ -60,4 +60,11 @@ export class ClienteEditComponent implements OnInit {
     window.scrollTo(0, 100)
   }
 
+  isValidationOk(): boolean{
+    if(this.cliente.cpf?.length < 11 || this.cliente.cep?.length < 8){
+      return false;
+    }
+    return true;
+  }
+
 }

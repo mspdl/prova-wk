@@ -3,13 +3,13 @@
 <div class="card my-2" *ngFor="let cliente of clientes | async">
   <div class="card-body">
     <h4 class="card-title">{{cliente.nome}}</h4>
-    <p class="card-text"><strong>CPF: </strong>{{cliente.cpf}}</p>
+    <p class="card-text"><strong>CPF: </strong>{{cliente.cpf | mask: '000.000.000-00'}}</p>
     <p class="card-text"><strong>E-mail: </strong>{{cliente.email}}</p>
     <p class="card-text"><strong>Data de Nascimento: </strong>{{cliente.dataNasc}}</p>
     <div *ngIf="cliente.cep || cliente.logradouro || cliente.numero || cliente.complemento || cliente.bairro || cliente.cidade">
       <hr>
       <h5>Endereço:</h5>
-      <p *ngIf="cliente.cep" class="card-text"><strong>CEP: </strong>{{cliente.cep}}</p>
+      <p *ngIf="cliente.cep" class="card-text"><strong>CEP: </strong>{{cliente.cep | mask: '00000-000'}}</p>
       <p *ngIf="cliente.logradouro" class="card-text"><strong>Logradouro: </strong>{{cliente.logradouro}}</p>
       <p *ngIf="cliente.numero" class="card-text"><strong>Número: </strong>{{cliente.numero}}</p>
       <p *ngIf="cliente.complemento" class="card-text"><strong>Complemento: </strong>{{cliente.complemento}}</p>

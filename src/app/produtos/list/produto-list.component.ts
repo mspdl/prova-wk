@@ -29,6 +29,7 @@ export class ProdutoListComponent implements OnInit {
 
   edit(produto: Produto, key: string){
     this.produtoDataService.changeProduto(produto, key)
+    window.scrollTo(0, 100)
   }
 
 }

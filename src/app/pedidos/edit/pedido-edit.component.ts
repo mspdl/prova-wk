@@ -89,27 +89,22 @@ export class PedidoEditComponent implements OnInit {
   }
 
   onChangeCliente(clienteId): void {
-    console.log(clienteId);
     this.clientesSelecionado = this.clientes.find(cliente => cliente.id === clienteId)
-    console.log(this.clientesSelecionado)
   }
 
   onItemSelect(produto: any ) {
     this.produtosSelecionados.push(this.produtos.find(p => p.id === produto.id))
-    console.log(this.produtosSelecionados);
     this.somaPedido()
   }
 
   onDeSelect(produto: any ) {
     this.produtosSelecionados = this.produtosSelecionados.filter(p => p.id !== produto.id)
-    console.log(this.produtosSelecionados);
     this.somaPedido()
   }
 
   somaPedido(){
     this.valorPedido = 0
     this.produtosSelecionados.forEach(a => this.valorPedido += a.valorUnitario)
-    console.log(this.valorPedido)
   }
 
 }

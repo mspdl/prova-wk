@@ -23,7 +23,7 @@ export class ProdutoEditComponent implements OnInit {
     this.produtoDataService.currentProduto.subscribe(data => {
       if (data.produto && data.key) {
         this.produto.nome = data.produto.nome
-        this.produto.valorUnitario = data.produto.valorUnitario
+        this.produto.valorUnitario = data.produto.valorUnitario.toString().replace('.', ',')
 
         this.produtoKey = data.key
       }
@@ -31,6 +31,8 @@ export class ProdutoEditComponent implements OnInit {
   }
 
   onSubmit() {
+    this.produto.valorUnitario = Number(this.produto.valorUnitario.toString().replace(',', '.'))
+
     if (this.produtoKey) {
       this.produtoService.update(this.produto, this.produtoKey)
     } else {
@@ -46,6 +48,16 @@ export class ProdutoEditComponent implements OnInit {
     this.produto = new Produto()
     this.produtoKey = ''
     window.scrollTo(0, 100)
+  }
+
+  isValidationOk(): boolean {
+    if (!this.produto.nome
+    || this.produto.nome?.length < 1
+    || !this.produto.valorUnitario
+    || this.produto.valorUnitario <= 0) {
+      return false;
+    }
+    return true;
   }
 
 }

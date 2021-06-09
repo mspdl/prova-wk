@@ -19,11 +19,10 @@ export class PedidoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.pedidoService.getAll().subscribe(pedidos => this.pedidos = pedidos)
-    console.log(this.pedidos)
   }
 
   delete(key: string){
-    console.log(this.pedidos)
+    this.pedidoService.delete(key)
   }
 
 }

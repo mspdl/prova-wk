@@ -15,9 +15,9 @@
   <div class="produtos-selecionados" *ngIf="produtosSelecionados?.length > 0">
     <h5>Produtos Selecionados</h5>
     <div *ngFor="let produto of produtosSelecionados">
-      &bull; {{produto.nome}} R$ {{produto.valorUnitario}}
+      &bull; {{produto.nome}}: {{produto.valorUnitario | currency}}
     </div>
-    <strong>Valor do pedido: {{valorPedido}}</strong>
+    <strong>Valor do pedido: {{valorPedido | currency}}</strong>
   </div>
 
   <div class="buttons">

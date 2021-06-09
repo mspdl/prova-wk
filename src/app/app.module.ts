@@ -1,9 +1,12 @@
-import { NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,13 +20,10 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 import { ProdutoEditComponent } from './produtos/edit/produto-edit.component';
 import { ProdutoListComponent } from './produtos/list/produto-list.component';
 import { ProdutosComponent } from './produtos/produtos.component';
-import { DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
-
-
-import ptBr from '@angular/common/locales/pt';
-import { registerLocaleData } from '@angular/common';
 
 registerLocaleData(ptBr);
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -46,8 +46,8 @@ registerLocaleData(ptBr);
     AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot()
-
+    NgMultiSelectDropDownModule.forRoot(),
+    NgxMaskModule.forRoot()
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },

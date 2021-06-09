@@ -3,7 +3,7 @@
 <div class="card my-2" *ngFor="let produto of produtos | async">
   <div class="card-body">
     <h5 class="card-title">{{produto.nome}}</h5>
-    <p class="card-text">{{produto.valorUnitario}}</p>
+    <p class="card-text">{{produto.valorUnitario | currency }}</p>
   </div>
   <div class="card-footer">
     <button type="button" class="btn btn-secondary" (click)="edit(produto, produto.key)">Editar</button>

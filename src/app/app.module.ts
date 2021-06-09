@@ -3,6 +3,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,8 +17,13 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 import { ProdutoEditComponent } from './produtos/edit/produto-edit.component';
 import { ProdutoListComponent } from './produtos/list/produto-list.component';
 import { ProdutosComponent } from './produtos/produtos.component';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
 
+
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(ptBr);
 
 @NgModule({
   declarations: [
@@ -43,7 +49,10 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     NgMultiSelectDropDownModule.forRoot()
 
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt' },
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

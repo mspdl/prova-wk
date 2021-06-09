@@ -7,9 +7,9 @@
     <h5><strong>Cliente: {{pedido.cliente?.nome}} </strong></h5>
     <h5 class="strong-title">Produtos</h5>
     <div class="produtos-selecionados" *ngFor="let produto of pedido.produtosPedido">
-      <p>&bull; {{produto.nome}} - R$ {{produto.valorUnitario}},00</p>
+      <p>&bull; {{produto.nome}} - {{produto.valorUnitario | currency }}</p>
     </div>
-    <h5 class="strong-title">Valor total do pedido: R$ {{pedido.valorTotalPedido}},00</h5>
+    <h5 class="strong-title">Valor total do pedido: {{pedido.valorTotalPedido | currency }}</h5>
   </div>
   <div class="card-footer">
     <button type="button" class="btn btn-danger" (click)="delete(pedido.key)">Excluir</button>

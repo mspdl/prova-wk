@@ -1,27 +1,38 @@
-# ProvaWk
+# Prova-Wk
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
+Este projeto foi gerado com intuito de aplicar para uma vaga na empresa [WK Technology](https://wkconsultoria.com.br/).
 
-## Development server
+## Requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Menu Inicial
+2. Listagem e cadastro de clientes, com os seguintes campos:
+    - Código de identificação do cliente
+    - Nome
+    - CPF
+    - Endereço Completo:
+      - CEP
+      - Logradouro
+      - Número
+      - Bairro
+      - Complemento
+      - Cidade
+    - E-Mail
+    - Data de Nascimento
+3. Listagem e cadastro de produtos
+   - Código de identificação do produto
+   - Nome
+   - Valor Unitário
+4. Pedido de venda
+    - Código de identificação da venda
+    - Data e Hora da venda
+    - Identificação do cliente
+    - Identificação dos itens da venda (Produtos)
+    - Total da venda
 
-## Code scaffolding
+## Tecnologia
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Esse projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 12.0.2 alimentando-se de uma API em Firebase.
 
-## Build
+### Servidor de desenvolvimento
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Primeiro execute o comando `npm install` para instalar o projeto em seu servidor local e depois `ng serve` para rodar o servidor de desenvolvimento. Navegaue até `http://localhost:4200/` para abrir o projeto em tempo real.

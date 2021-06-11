@@ -15,7 +15,7 @@ export class ClienteService {
       .push(cliente)
       .then((result: any) => {
         console.log("Cliente registrado com chave " + result.key)
-        cliente.id = result.key
+        cliente.key = result.key
         this.update(cliente, result.key)
       })
   }

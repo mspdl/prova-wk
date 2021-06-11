@@ -1,7 +1,7 @@
 <form (ngSubmit)="onSubmit()" ngNativeValidate>
   <select *ngIf="clientes?.length > 0" #cliente matNativeControl required (change)='onChangeCliente(cliente.value)'>
     <option label="--Selecione um cliente --"></option>
-    <option *ngFor="let cliente of clientes" [value]="cliente.id">
+    <option *ngFor="let cliente of clientes" [value]="cliente.key">
       {{cliente.nome}}
     </option>
   </select>

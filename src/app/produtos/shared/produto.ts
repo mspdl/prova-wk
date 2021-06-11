@@ -1,5 +1,5 @@
 export class Produto {
-  id?: string
+  key: string
   nome: string
   valorUnitario: number
 }

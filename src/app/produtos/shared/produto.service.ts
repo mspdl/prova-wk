@@ -15,7 +15,7 @@ export class ProdutoService {
       .push(produto)
       .then((result: any) => {
         console.log("Produto registrado com chave " + result.key)
-        produto.id = result.key
+        produto.key = result.key
         this.update(produto, result.key)
       })
   }

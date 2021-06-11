@@ -88,8 +88,8 @@ export class PedidoEditComponent implements OnInit {
     window.scrollTo(0, 100)
   }
 
-  onChangeCliente(clienteId): void {
-    this.clientesSelecionado = this.clientes.find(cliente => cliente.id === clienteId)
+  onChangeCliente(clienteKey): void {
+    this.clientesSelecionado = this.clientes.find(cliente => cliente.key === clienteKey)
   }
 
   onItemSelect(produto: any ) {

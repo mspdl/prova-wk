@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TrackByFunction } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Produto } from '../shared/produto';
 import { ProdutoDataService } from '../shared/produto-data.service';
@@ -13,6 +13,13 @@ export class ProdutoListComponent implements OnInit {
 
   // TODO tipar depois
   produtos: Observable<any>
+
+  cancelClicked = false
+  confirmText= 'Deletar'
+  cancelText= 'Cancelar'
+  closeOnOutsideClick= true
+  popoverTitle= 'Confirmar deleção'
+  popoverMessage=`Deseja mesmo deletar o produto?`
 
   constructor(
     private produtoService: ProdutoService,

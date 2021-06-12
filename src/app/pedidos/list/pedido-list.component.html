@@ -12,6 +12,19 @@
     <h5 class="strong-title">Valor total do pedido: {{pedido.valorTotalPedido | currency }}</h5>
   </div>
   <div class="card-footer">
-    <button type="button" class="btn btn-danger" (click)="delete(pedido.key)">Excluir</button>
+    <button
+      class="btn btn-danger mx-2"
+      mwlConfirmationPopover
+      placement="right"
+      confirmButtonType="danger"
+      [popoverTitle]="popoverTitle"
+      [popoverMessage]="popoverMessage"
+      [confirmText]="confirmText"
+      [cancelText]="cancelText"
+      (confirm)="delete(pedido.key)"
+      (cancel)="cancelClicked = true"
+    >
+      Excluir
+    </button>
   </div>
 </div>

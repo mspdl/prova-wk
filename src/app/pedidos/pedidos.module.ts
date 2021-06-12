@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { PedidoEditComponent } from './edit/pedido-edit.component';
 import { PedidoListComponent } from './list/pedido-list.component';
@@ -16,6 +17,7 @@ import { PedidosComponent } from './pedidos.component';
     CommonModule,
     FormsModule,
     NgMultiSelectDropDownModule.forRoot(),
+    ConfirmationPopoverModule.forRoot()
   ],
   exports: [
     PedidoEditComponent,

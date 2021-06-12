@@ -19,6 +19,20 @@
   </div>
   <div class="card-footer">
     <button type="button" class="btn btn-secondary" (click)="edit(cliente, cliente.key)">Editar</button>
-    <button type="button" class="btn btn-danger mx-2" (click)="delete(cliente.key)">Excluir</button>
+
+    <button
+      class="btn btn-danger mx-2"
+      mwlConfirmationPopover
+      placement="right"
+      confirmButtonType="danger"
+      [popoverTitle]="popoverTitle"
+      [popoverMessage]="popoverMessage"
+      [confirmText]="confirmText"
+      [cancelText]="cancelText"
+      (confirm)="delete(cliente.key)"
+      (cancel)="cancelClicked = true"
+    >
+      Excluir
+    </button>
   </div>
 </div>

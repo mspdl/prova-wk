@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { NgxMaskModule } from 'ngx-mask';
 import { ClientesComponent } from './clientes.component';
 import { ClienteEditComponent } from './edit/cliente-edit.component';
@@ -16,6 +17,7 @@ import { ClienteListComponent } from './list/cliente-list.component';
     CommonModule,
     NgxMaskModule.forRoot(),
     FormsModule,
+    ConfirmationPopoverModule.forRoot()
   ],
   exports: [
     ClienteEditComponent,

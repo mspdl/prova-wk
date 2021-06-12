@@ -3,23 +3,15 @@ import ptBr from '@angular/common/locales/pt';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { IConfig } from 'ngx-mask';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClientesComponent } from './clientes/clientes.component';
-import { ClienteEditComponent } from './clientes/edit/cliente-edit.component';
-import { ClienteListComponent } from './clientes/list/cliente-list.component';
+import { ClientesModule } from './clientes/clientes.module';
 import { MenuComponent } from './menu/menu.component';
-import { PedidoEditComponent } from './pedidos/edit/pedido-edit.component';
-import { PedidoListComponent } from './pedidos/list/pedido-list.component';
-import { PedidosComponent } from './pedidos/pedidos.component';
-import { ProdutoEditComponent } from './produtos/edit/produto-edit.component';
-import { ProdutoListComponent } from './produtos/list/produto-list.component';
-import { ProdutosComponent } from './produtos/produtos.component';
+import { PedidosModule } from './pedidos/pedido.module';
+import { ProdutosModule } from './produtos/produtos.module';
 
 registerLocaleData(ptBr);
 
@@ -28,26 +20,16 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    ClienteEditComponent,
-    ClienteListComponent,
-    ClientesComponent,
-    ProdutoEditComponent,
-    ProdutoListComponent,
-    ProdutosComponent,
-    PedidoEditComponent,
-    PedidoListComponent,
-    PedidosComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot(),
-    NgxMaskModule.forRoot()
+    ClientesModule,
+    PedidosModule,
+    ProdutosModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },

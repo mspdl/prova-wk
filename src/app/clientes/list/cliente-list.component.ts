@@ -14,6 +14,13 @@ export class ClienteListComponent implements OnInit {
   // TODO tipar depois
   clientes: Observable<any>
 
+  cancelClicked = false
+  confirmText= 'Deletar'
+  cancelText= 'Cancelar'
+  closeOnOutsideClick= true
+  popoverTitle= 'Confirmar deleção'
+  popoverMessage=`Deseja mesmo deletar o cliente?`
+
   constructor(
     private clienteService: ClienteService,
     private clienteDataService: ClienteDataService

@@ -12,6 +12,13 @@ export class PedidoListComponent implements OnInit {
 
   pedidos: Pedido[]
 
+  cancelClicked = false
+  confirmText= 'Deletar'
+  cancelText= 'Cancelar'
+  closeOnOutsideClick= true
+  popoverTitle= 'Confirmar deleção'
+  popoverMessage=`Deseja mesmo deletar o pedido?`
+
   constructor(
     private pedidoService: PedidoService,
     private pedidoDataService: PedidoDataService

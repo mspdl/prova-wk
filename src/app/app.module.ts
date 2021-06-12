@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientesModule } from './clientes/clientes.module';
 import { MenuComponent } from './menu/menu.component';
-import { PedidosModule } from './pedidos/pedido.module';
+import { PedidosModule } from './pedidos/pedidos.module';
 import { ProdutosModule } from './produtos/produtos.module';
 
 registerLocaleData(ptBr);

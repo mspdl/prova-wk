@@ -2,7 +2,7 @@
 
 <div class="card my-2" *ngFor="let pedido of pedidos">
   <div class="card-body">
-    <h4 class="card-title">Pedido {{pedido.key}}</h4>
+    <h4 class="card-title">Pedido {{pedido.dataHoraPedido | number}}</h4>
     <p class="created-at">Pedido criado <strong>{{pedido.dataHoraPedido | date: 'dd/MM/yyyy HH:mm:ss'}}</strong></p>
     <h5><strong>Cliente: {{pedido.cliente?.nome}} </strong></h5>
     <h5 class="strong-title">Produtos</h5>

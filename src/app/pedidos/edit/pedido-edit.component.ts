@@ -68,7 +68,6 @@ export class PedidoEditComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
     this.pedido.cliente = this.clientesSelecionado
     this.pedido.produtosPedido = this.produtosSelecionados
     this.pedido.dataHoraPedido = Date.now()
@@ -83,7 +82,9 @@ export class PedidoEditComponent implements OnInit {
   }
 
   reset() {
+    console.log(this.pedido)
     this.pedido = new Pedido()
+    console.log(this.pedido)
     this.pedidoKey = ''
     window.scrollTo(0, 100)
   }

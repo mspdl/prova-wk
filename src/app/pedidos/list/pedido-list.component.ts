@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Pedido } from '../shared/pedido';
-import { PedidoDataService } from '../shared/pedido-data.service';
 import { PedidoService } from '../shared/pedido.service';
 
 @Component({
@@ -20,8 +19,7 @@ export class PedidoListComponent implements OnInit {
   popoverMessage=`Deseja mesmo deletar o pedido?`
 
   constructor(
-    private pedidoService: PedidoService,
-    private pedidoDataService: PedidoDataService
+    private pedidoService: PedidoService
   ) { }
 
   ngOnInit(): void {

@@ -14,15 +14,12 @@ import { PedidoService } from '../shared/pedido.service';
 })
 export class PedidoEditComponent implements OnInit {
 
-  pedido: Pedido
-  pedidoKey: string = ''
-
   clientes: Cliente[]
   clienteSelecionado: Cliente
 
   produtos = []
   produtosSelecionados = []
-  dropdownSettings: IDropdownSettings = {}
+  produtosDropdownSettings: IDropdownSettings = {}
 
   valorPedido = 0
 
@@ -36,7 +33,7 @@ export class PedidoEditComponent implements OnInit {
     this.clienteService.getAll().subscribe(clientes =>  this.clientes = clientes)
     this.produtoService.getAll().subscribe(produtos => this.produtos = produtos)
 
-    this.dropdownSettings = {
+    this.produtosDropdownSettings = {
       singleSelection: false,
       idField: 'id',
       textField: 'nome',
@@ -49,28 +46,26 @@ export class PedidoEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.pedido.cliente = this.clienteSelecionado
-    this.pedido.produtosPedido = this.produtosSelecionados
-    this.pedido.dataHoraPedido = Date.now()
-    this.pedido.valorTotalPedido = this.valorPedido
-    if (this.pedidoKey) {
-      this.pedidoService.update(this.pedido, this.pedidoKey)
-    } else {
-      this.pedidoService.insert(this.pedido)
-    }
+    let pedido: Pedido = new Pedido()
+    pedido.cliente = this.clienteSelecionado
+    pedido.produtosPedido = this.produtosSelecionados
+    pedido.dataHoraPedido = Date.now()
+    pedido.valorTotalPedido = this.valorPedido
+    this.pedidoService.insert(pedido)
 
     this.reset()
   }
 
   reset() {
-    this.clienteService.getAll().subscribe(clientes =>  this.clientes = clientes)
+    // Para resetar o cliente selecionado
     this.clienteSelecionado = undefined
-    this.valorPedido = 0
+    this.clienteService.getAll().subscribe(clientes =>  this.clientes = clientes)
+
+    this.produtosSelecionados = []
     window.scrollTo(0, 100)
   }
 
   onChangeCliente(clienteKey): void {
-    console.log(clienteKey)
     this.clienteSelecionado = this.clientes.find(cliente => cliente.key === clienteKey)
   }
 

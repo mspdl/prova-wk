@@ -14,9 +14,15 @@
 
   <p *ngIf="clientes?.length == 0">Você precisa cadastrar um <a routerLink="/clientes">Cliente</a> primeiro</p>
 
-  <ng-multiselect-dropdown [disabled]="!clienteSelecionado" [placeholder]="'Selecione os produtos'"
-    [settings]="dropdownSettings" [data]="produtos" [(ngModel)]="produtosSelecionados" (onSelect)="onItemSelect($event)"
-    (onDeSelect)="onDeSelect($event)"></ng-multiselect-dropdown>
+  <ng-multiselect-dropdown
+    [disabled]="!clienteSelecionado"
+    [placeholder]="'Selecione os produtos'"
+    [settings]="produtosDropdownSettings"
+    [data]="produtos"
+    [(ngModel)]="produtosSelecionados"
+    (onSelect)="onItemSelect($event)"
+    (onDeSelect)="onDeSelect($event)"
+  ></ng-multiselect-dropdown>
 
   <div class="produtos-selecionados" *ngIf="produtosSelecionados?.length > 0">
     <h5>Produtos Selecionados</h5>

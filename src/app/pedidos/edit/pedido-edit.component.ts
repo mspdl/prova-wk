@@ -4,13 +4,8 @@ import { Cliente } from 'src/app/clientes/shared/cliente';
 import { ClienteService } from 'src/app/clientes/shared/cliente.service';
 import { ProdutoService } from 'src/app/produtos/shared/produto.service';
 import { Pedido } from '../shared/pedido';
-import { PedidoDataService } from '../shared/pedido-data.service';
 import { PedidoService } from '../shared/pedido.service';
 
-interface Animal {
-  name: string;
-  sound: string;
-}
 
 @Component({
   selector: 'pedido-edit',
@@ -22,9 +17,8 @@ export class PedidoEditComponent implements OnInit {
   pedido: Pedido
   pedidoKey: string = ''
 
-  // TODO tipar depois
   clientes: Cliente[]
-  clientesSelecionado: Cliente
+  clienteSelecionado: Cliente
 
   produtos = []
   produtosSelecionados = []
@@ -34,41 +28,28 @@ export class PedidoEditComponent implements OnInit {
 
   constructor(
     private pedidoService: PedidoService,
-    private pedidoDataService: PedidoDataService,
     private clienteService: ClienteService,
     private produtoService: ProdutoService
   ) { }
 
   ngOnInit(): void {
-   this.clienteService.getAll().subscribe(clientes =>  this.clientes = clientes)
-   this.produtoService.getAll().subscribe(produtos => this.produtos = produtos)
+    this.clienteService.getAll().subscribe(clientes =>  this.clientes = clientes)
+    this.produtoService.getAll().subscribe(produtos => this.produtos = produtos)
 
-   this.dropdownSettings = {
-    singleSelection: false,
-    idField: 'id',
-    textField: 'nome',
-    itemsShowLimit: 5,
-    enableCheckAll: false,
-    unSelectAllText: 'Limpar seleção',
-    allowSearchFilter: true
-  };
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'nome',
+      itemsShowLimit: 5,
+      enableCheckAll: false,
+      unSelectAllText: 'Limpar seleção',
+      allowSearchFilter: true
+    };
 
-    this.pedido = new Pedido()
-    this.pedidoDataService.currentPedido.subscribe(data => {
-      if (data.pedido && data.key) {
-        this.pedido = new Pedido()
-        this.pedido.cliente = data.pedido.cliente
-        this.pedido.produtosPedido = data.pedido.itensVenda
-        this.pedido.dataHoraPedido = data.pedido.momentoVenda
-        this.pedido.valorTotalPedido = data.pedido.totalVenda
-
-        this.pedidoKey = data.key
-      }
-    })
   }
 
   onSubmit() {
-    this.pedido.cliente = this.clientesSelecionado
+    this.pedido.cliente = this.clienteSelecionado
     this.pedido.produtosPedido = this.produtosSelecionados
     this.pedido.dataHoraPedido = Date.now()
     this.pedido.valorTotalPedido = this.valorPedido
@@ -82,15 +63,15 @@ export class PedidoEditComponent implements OnInit {
   }
 
   reset() {
-    console.log(this.pedido)
-    this.pedido = new Pedido()
-    console.log(this.pedido)
-    this.pedidoKey = ''
+    this.clienteService.getAll().subscribe(clientes =>  this.clientes = clientes)
+    this.clienteSelecionado = undefined
+    this.valorPedido = 0
     window.scrollTo(0, 100)
   }
 
   onChangeCliente(clienteKey): void {
-    this.clientesSelecionado = this.clientes.find(cliente => cliente.key === clienteKey)
+    console.log(clienteKey)
+    this.clienteSelecionado = this.clientes.find(cliente => cliente.key === clienteKey)
   }
 
   onItemSelect(produto: any ) {

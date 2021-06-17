@@ -1,5 +1,12 @@
-<form (ngSubmit)="onSubmit()" ngNativeValidate>
-  <select *ngIf="clientes?.length > 0" #cliente matNativeControl required (change)='onChangeCliente(cliente.value)'>
+<form [formGroup]="pedidoForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+  <select
+    formControlName="clienteSelecionadoControl"
+    *ngIf="clientes?.length > 0"
+    #cliente
+    matNativeControl
+    required
+    (change)='onChangeCliente(cliente.value)'
+    >
     <option label="--Selecione um cliente --"></option>
     <option *ngFor="let cliente of clientes" [value]="cliente.key">
       {{cliente.nome}}
@@ -8,9 +15,15 @@
 
   <p *ngIf="clientes?.length == 0">Você precisa cadastrar um <a routerLink="/clientes">Cliente</a> primeiro</p>
 
-  <ng-multiselect-dropdown [disabled]="!clientesSelecionado" [placeholder]="'Selecione os produtos'"
-    [settings]="dropdownSettings" [data]="produtos" [(ngModel)]="produtosSelecionados" (onSelect)="onItemSelect($event)"
-    (onDeSelect)="onDeSelect($event)"></ng-multiselect-dropdown>
+  <ng-multiselect-dropdown
+    formControlName="produtosSelecionadosControl"
+    [disabled]="!clienteSelecionado"
+    [placeholder]="'Selecione os produtos'"
+    [settings]="produtosDropdownSettings"
+    [data]="produtos"
+    (onSelect)="onItemSelect($event)"
+    (onDeSelect)="onDeSelect($event)"
+  ></ng-multiselect-dropdown>
 
   <div class="produtos-selecionados" *ngIf="produtosSelecionados?.length > 0">
     <h5>Produtos Selecionados</h5>
@@ -21,7 +34,7 @@
   </div>
 
   <div class="buttons">
-    <button [disabled]="!clientesSelecionado || produtosSelecionados.length == 0" type="submit"
+    <button [disabled]="!clienteSelecionado || produtosSelecionados.length == 0" type="submit"
       class="btn btn-primary mt-2">Salvar</button>
     <button type="button" (click)="reset()" class="btn btn-secondary mt-2 mx-2">Cancel</button>
   </div>

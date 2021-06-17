@@ -55,7 +55,7 @@ $text: #a4a8b4;
         @include breadcrumb-item;
         text-decoration: none;
         color: inherit;
-        transition: all 1s ease;
+        transition: all 0.7s ease;
       }
       a:hover {
         background-color: $menu-background;

@@ -50,18 +50,23 @@ $text: #a4a8b4;
       display: flex;
       list-style: none;
 
-      li {
-        @include breadcrumb-item;
-      }
 
-      li:hover {
+      a {
+        @include breadcrumb-item;
+        text-decoration: none;
+        color: inherit;
+        transition: all 1s ease;
+      }
+      a:hover {
         background-color: $menu-background;
       }
 
-      a {
-        text-decoration: none;
-        color: inherit;
+      .page-active {
+        pointer-events:none;
+        background-color: $subtitle;
+        color: $background;
       }
+
     }
   }
 }

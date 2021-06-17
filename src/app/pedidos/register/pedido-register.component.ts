@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Cliente } from 'src/app/clientes/shared/cliente';
 import { ClienteService } from 'src/app/clientes/shared/cliente.service';
@@ -8,11 +9,13 @@ import { PedidoService } from '../shared/pedido.service';
 
 
 @Component({
-  selector: 'pedido-edit',
-  templateUrl: './pedido-edit.component.html',
-  styleUrls: ['./pedido-edit.component.scss']
+  selector: 'pedido-register',
+  templateUrl: './pedido-register.component.html',
+  styleUrls: ['./pedido-register.component.scss']
 })
-export class PedidoEditComponent implements OnInit {
+export class PedidoRegisterComponent implements OnInit {
+
+  pedidoForm: FormGroup
 
   clientes: Cliente[]
   clienteSelecionado: Cliente
@@ -26,23 +29,27 @@ export class PedidoEditComponent implements OnInit {
   constructor(
     private pedidoService: PedidoService,
     private clienteService: ClienteService,
-    private produtoService: ProdutoService
-  ) { }
+    private produtoService: ProdutoService,
+    private fb: FormBuilder
+  ) {
+    this.pedidoForm = fb.group({
+      produtosSelecionadosControl: this.produtosSelecionados,
+      clienteSelecionadoControl: this.clienteSelecionado
+    });
+  }
 
   ngOnInit(): void {
-    this.clienteService.getAll().subscribe(clientes =>  this.clientes = clientes)
+    this.clienteService.getAll().subscribe(clientes => this.clientes = clientes)
     this.produtoService.getAll().subscribe(produtos => this.produtos = produtos)
 
     this.produtosDropdownSettings = {
       singleSelection: false,
       idField: 'id',
       textField: 'nome',
-      itemsShowLimit: 5,
       enableCheckAll: false,
       unSelectAllText: 'Limpar seleção',
       allowSearchFilter: true
     };
-
   }
 
   onSubmit() {
@@ -51,17 +58,16 @@ export class PedidoEditComponent implements OnInit {
     pedido.produtosPedido = this.produtosSelecionados
     pedido.dataHoraPedido = Date.now()
     pedido.valorTotalPedido = this.valorPedido
+
     this.pedidoService.insert(pedido)
 
     this.reset()
   }
 
   reset() {
-    // Para resetar o cliente selecionado
     this.clienteSelecionado = undefined
-    this.clienteService.getAll().subscribe(clientes =>  this.clientes = clientes)
-
     this.produtosSelecionados = []
+    this.pedidoForm.reset()
     window.scrollTo(0, 100)
   }
 
@@ -69,17 +75,17 @@ export class PedidoEditComponent implements OnInit {
     this.clienteSelecionado = this.clientes.find(cliente => cliente.key === clienteKey)
   }
 
-  onItemSelect(produto: any ) {
+  onItemSelect(produto: any) {
     this.produtosSelecionados.push(this.produtos.find(p => p.id === produto.id))
     this.somaPedido()
   }
 
-  onDeSelect(produto: any ) {
+  onDeSelect(produto: any) {
     this.produtosSelecionados = this.produtosSelecionados.filter(p => p.id !== produto.id)
     this.somaPedido()
   }
 
-  somaPedido(){
+  somaPedido() {
     this.valorPedido = 0
     this.produtosSelecionados.forEach(a => this.valorPedido += a.valorUnitario)
   }
